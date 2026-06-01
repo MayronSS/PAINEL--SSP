@@ -57,11 +57,11 @@ router.put('/solicitacoes/:id/approve', async (req, res) => {
                             {
                                 color: 3066993, // Verde
                                 author: {
-                                    name: 'DEPARTAMENTO DE POLÍCIA DE LOS SANTOS',
+                                    name: 'SECRETARIA DE SEGURANÇA PÚBLICA',
                                     icon_url: guildConfig?.embeds?.design?.logo || 'https://i.imgur.com/8Qp49X0.png'
                                 },
-                                title: 'Recrutamento LSPD — Aprovado',
-                                description: `Prezado <@${updated.userId}>,\n\nSua ficha de inscrição para ingressar na LSPD foi **APROVADA** pela corregedoria/comando!`,
+                                title: 'Recrutamento SSP — Aprovado',
+                                description: `Prezado <@${updated.userId}>,\n\nSua ficha de inscrição para ingressar na SSP foi **APROVADA** pela corregedoria/comando!`,
                                 fields: [
                                     { name: '👤 Oficial Responsável', value: `${req.session.user.displayName}`, inline: true },
                                     { name: '🎫 Passaporte do Cadete', value: `\`${updated.idCidade || 'N/A'}\``, inline: true }
@@ -70,7 +70,7 @@ router.put('/solicitacoes/:id/approve', async (req, res) => {
                                     url: 'https://i.imgur.com/XU797R3.png'
                                 },
                                 footer: {
-                                    text: 'LSPD Recrutamento • Parabéns!'
+                                    text: 'SSP Recrutamento • Parabéns!'
                                 }
                             }
                         ],
@@ -147,11 +147,11 @@ router.put('/solicitacoes/:id/reject', async (req, res) => {
                             {
                                 color: 15158332, // Vermelho
                                 author: {
-                                    name: 'DEPARTAMENTO DE POLÍCIA DE LOS SANTOS',
+                                    name: 'SECRETARIA DE SEGURANÇA PÚBLICA',
                                     icon_url: guildConfig?.embeds?.design?.logo || 'https://i.imgur.com/8Qp49X0.png'
                                 },
-                                title: 'Recrutamento LSPD — Reprovado',
-                                description: `Prezado <@${updated.userId}>,\n\nInfelizmente, sua ficha de inscrição para ingressar na LSPD foi **REPROVADA** pela corregedoria/comando.\n\n**Motivo:** ${reason}`,
+                                title: 'Recrutamento SSP — Reprovado',
+                                description: `Prezado <@${updated.userId}>,\n\nInfelizmente, sua ficha de inscrição para ingressar na SSP foi **REPROVADA** pela corregedoria/comando.\n\n**Motivo:** ${reason}`,
                                 fields: [
                                     { name: '👤 Oficial Responsável', value: `${req.session.user.displayName}`, inline: true },
                                     { name: '🎫 Passaporte', value: `\`${updated.idCidade || 'N/A'}\``, inline: true }
@@ -160,7 +160,7 @@ router.put('/solicitacoes/:id/reject', async (req, res) => {
                                     url: 'https://i.imgur.com/XU797R3.png'
                                 },
                                 footer: {
-                                    text: 'LSPD Recrutamento • Mais sorte na próxima!'
+                                    text: 'SSP Recrutamento • Mais sorte na próxima!'
                                 }
                             }
                         ]
@@ -232,7 +232,7 @@ router.get('/solicitacoes/export', async (req, res) => {
 
         if (format === 'xlsx') {
             const workbook = new ExcelJS.Workbook();
-            const worksheet = workbook.addWorksheet('Solicitações LSPD');
+            const worksheet = workbook.addWorksheet('Solicitações SSP');
             worksheet.columns = [
                 { header: 'Cidadão/Oficial', key: 'nomeSobrenome', width: 30 },
                 { header: 'ID Cidade', key: 'idCidade', width: 15 },
@@ -255,16 +255,16 @@ router.get('/solicitacoes/export', async (req, res) => {
             });
 
             res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            res.setHeader('Content-Disposition', 'attachment; filename="solicitacoes-lspd.xlsx"');
+            res.setHeader('Content-Disposition', 'attachment; filename="solicitacoes-ssp.xlsx"');
             await workbook.xlsx.write(res);
             return res.end();
         } else if (format === 'pdf') {
             const doc = new PDFDocument({ margin: 30, size: 'A4' });
             res.setHeader('Content-Type', 'application/pdf');
-            res.setHeader('Content-Disposition', 'attachment; filename="solicitacoes-lspd.pdf"');
+            res.setHeader('Content-Disposition', 'attachment; filename="solicitacoes-ssp.pdf"');
             doc.pipe(res);
 
-            doc.fontSize(18).text('LSPD - Relatório de Solicitações e Recrutamento', { align: 'center' });
+            doc.fontSize(18).text('SSP - Relatório de Solicitações e Recrutamento', { align: 'center' });
             doc.moveDown(2);
 
             solicitacoes.forEach((s, index) => {

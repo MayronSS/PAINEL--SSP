@@ -35,7 +35,7 @@ router.get('/auth/discord/callback', async (req, res) => {
             member = await oauthHelper.checkUserGuildMember(profile.id);
         } catch (memberErr) {
             console.error(`Usuário ${profile.id} não foi encontrado no servidor Discord:`, memberErr.message);
-            return res.status(403).send('Acesso Negado: Você precisa estar no servidor Discord da LSPD para acessar o painel.');
+            return res.status(403).send('Acesso Negado: Você precisa estar no servidor Discord da SSP para acessar o painel.');
         }
 
         // 4. Buscar papéis autorizados do banco de dados (GuildConfig)
@@ -68,7 +68,7 @@ router.get('/auth/discord/callback', async (req, res) => {
         const isOfficer = memberRoles.some(roleId => policeRoleIds.includes(roleId));
 
         if (!isAdmin && !isOfficer) {
-            return res.status(403).send('Acesso Negado: Você não possui cargos autorizados na LSPD para usar este painel.');
+            return res.status(403).send('Acesso Negado: Você não possui cargos autorizados na SSP para usar este painel.');
         }
 
         // 5. Configurar sessão do usuário

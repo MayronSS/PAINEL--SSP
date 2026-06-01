@@ -64,8 +64,8 @@ router.get('/officers', async (req, res) => {
             const distinctUsers = await Ponto.distinct('userId');
             officersList = distinctUsers.map(userId => ({
                 id: userId,
-                username: 'Oficial LSPD',
-                displayName: 'Oficial LSPD',
+                username: 'Oficial SSP',
+                displayName: 'Oficial SSP',
                 avatar: null,
                 roles: []
             }));
@@ -215,7 +215,7 @@ router.get('/officers/:userId', async (req, res) => {
             // Inicializar se não existir
             dbMember = await Member.create({
                 discordUserId: userId,
-                username: discordMember?.user?.username || 'Oficial LSPD',
+                username: discordMember?.user?.username || 'Oficial SSP',
                 avatarUrl: discordMember?.user?.avatar ? `https://cdn.discordapp.com/avatars/${userId}/${discordMember.user.avatar}.png` : null
             });
             dbMember = dbMember.toObject ? dbMember.toObject() : dbMember;

@@ -1,7 +1,7 @@
 {
-  "name": "Painel LSPD",
-  "short_name": "LSPD",
-  "description": "Painel Operacional do Departamento de Polícia de Los Santos",
+  "name": "Painel SSP",
+  "short_name": "SSP",
+  "description": "Painel Operacional da Secretaria de Segurança Pública",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#09090b",

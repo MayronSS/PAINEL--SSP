@@ -134,7 +134,7 @@ router.get('/cidadaos/export', async (req, res) => {
 
         if (format === 'xlsx') {
             const workbook = new ExcelJS.Workbook();
-            const worksheet = workbook.addWorksheet('Membros LSPD');
+             const worksheet = workbook.addWorksheet('Membros SSP');
             worksheet.columns = [
                 { header: 'Nome Completo', key: 'nomeSobrenome', width: 30 },
                 { header: 'ID Cidade', key: 'idCidade', width: 15 },
@@ -153,16 +153,16 @@ router.get('/cidadaos/export', async (req, res) => {
             });
 
             res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            res.setHeader('Content-Disposition', 'attachment; filename="cidadaos-lspd.xlsx"');
+            res.setHeader('Content-Disposition', 'attachment; filename="cidadaos-ssp.xlsx"');
             await workbook.xlsx.write(res);
             return res.end();
         } else if (format === 'pdf') {
             const doc = new PDFDocument({ margin: 30, size: 'A4' });
             res.setHeader('Content-Type', 'application/pdf');
-            res.setHeader('Content-Disposition', 'attachment; filename="cidadaos-lspd.pdf"');
+            res.setHeader('Content-Disposition', 'attachment; filename="cidadaos-ssp.pdf"');
             doc.pipe(res);
 
-            doc.fontSize(18).text('LSPD - Relatório de Oficiais e Cidadãos Cadastrados', { align: 'center' });
+            doc.fontSize(18).text('SSP - Relatório de Oficiais e Cidadãos Cadastrados', { align: 'center' });
             doc.moveDown(2);
 
             cidadaos.forEach((c, index) => {

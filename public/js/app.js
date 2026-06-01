@@ -75,11 +75,11 @@ class PfPanelApp {
       warnings: 'Advertências Disciplinares',
       officers: 'Dossiê de Oficiais',
       ranking: 'Ranking de Atividade',
-      academia: 'Academia LSPD'
+      academia: 'Academia SSP'
     };
 
     const subtitles = {
-      dashboard: 'Indicadores consolidados do módulo de cadastro e solicitações da LSPD.',
+      dashboard: 'Indicadores consolidados do módulo de cadastro e solicitações da SSP.',
       cidadaos: 'Gerenciamento de registros de cidadãos validados e fichados no bot.',
       solicitacoes: 'Fila de análise operacional de visto, porte de arma e recrutamento.',
       ponto: 'Monitoramento de turnos, oficiais em patrulha e rankings de horas.',
@@ -93,10 +93,10 @@ class PfPanelApp {
       warnings: 'Histórico de punições e aplicação direta de advertências aos oficiais.',
       officers: 'Perfis de carreira, anotações de comando e produtividade dos policiais.',
       ranking: 'Desempenho operacional da corporação por patrulhas e ações.',
-      academia: 'Central de treinamentos, cursos e capacitação dos oficiais da LSPD.'
+      academia: 'Central de treinamentos, cursos e capacitação dos oficiais da SSP.'
     };
 
-    this.root.querySelector('#page-title').textContent = titles[page] || 'Painel LSPD';
+    this.root.querySelector('#page-title').textContent = titles[page] || 'Painel SSP';
     this.root.querySelector('#page-subtitle').textContent = subtitles[page] || '';
 
     // Highlight active nav item in both sidebars
@@ -221,11 +221,11 @@ class PfPanelApp {
           <div class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center text-white mb-6 shadow-xl shadow-brand-500/20 animate-bounce-slow">
             <i class="fas fa-shield-halved text-3xl"></i>
           </div>
-          <h1 class="text-2xl font-black tracking-tight mb-2">Painel Operacional LSPD</h1>
-          <p class="text-xs text-brand-500 font-bold tracking-widest uppercase mb-8">Los Santos Police Department</p>
+          <h1 class="text-2xl font-black tracking-tight mb-2">Painel Operacional SSP</h1>
+          <p class="text-xs text-brand-500 font-bold tracking-widest uppercase mb-8">Secretaria de Segurança Pública</p>
           
           <p class="text-sm text-[var(--text-muted)] mb-6 leading-relaxed">
-            Este é um sistema restrito a oficiais do Departamento de Polícia de Los Santos.
+            Este é um sistema restrito a oficiais da Secretaria de Segurança Pública.
           </p>
           
           <a href="/api/auth/discord" class="btn-brand w-full py-3.5 rounded-xl text-xs uppercase tracking-wider font-bold flex items-center justify-center gap-3 active:scale-98 transition-all hover:brightness-110">
@@ -247,7 +247,7 @@ class PfPanelApp {
     const summary = await this.api.getDashboardSummary();
 
     if (!summary || !summary.success) {
-      if (!silent) container.innerHTML = this.templates.errorPage('Não foi possível carregar os indicadores da LSPD.');
+      if (!silent) container.innerHTML = this.templates.errorPage('Não foi possível carregar os indicadores da SSP.');
       return;
     }
 
@@ -1195,9 +1195,9 @@ class PfPanelApp {
                   <span class="px-2 py-0.5 text-xs font-bold uppercase rounded border ${statusBadges[aus.status]}">${aus.status}</span>
                 </div>
                 ${aus.status === 'aprovado' ? `
-                  <p class="text-xs text-[var(--text-muted)]">Aprovado por: <strong>${aus.aprovadoPor || 'Comando LSPD'}</strong></p>
+                  <p class="text-xs text-[var(--text-muted)]">Aprovado por: <strong>${aus.aprovadoPor || 'Comando SSP'}</strong></p>
                 ` : `
-                  <p class="text-xs text-[var(--text-muted)]">Reprovado por: <strong>${aus.aprovadoPor || 'Comando LSPD'}</strong></p>
+                  <p class="text-xs text-[var(--text-muted)]">Reprovado por: <strong>${aus.aprovadoPor || 'Comando SSP'}</strong></p>
                   <div class="p-2 rounded-lg border border-rose-500/10 bg-rose-500/5 text-rose-500 text-xs mt-1">
                     <strong>Justificativa:</strong> ${aus.motivoReprovacao || 'Nenhum motivo informado.'}
                   </div>
@@ -1772,7 +1772,7 @@ class PfPanelApp {
             <i class="fas fa-graduation-cap text-2xl"></i>
           </div>
           <h3 class="text-lg font-bold mb-2">Nenhum curso cadastrado</h3>
-          <p class="text-sm text-[var(--text-muted)] mb-4">Crie o primeiro curso para iniciar a Academia LSPD.</p>
+          <p class="text-sm text-[var(--text-muted)] mb-4">Crie o primeiro curso para iniciar a Academia SSP.</p>
           ${this.state.user.isAdmin ? '<button id="create-course-btn" class="btn-brand px-6 py-2.5 rounded-xl text-sm"><i class="fas fa-plus mr-2"></i>Criar Curso</button>' : ''}
         </div>
       ` : `
@@ -2113,7 +2113,7 @@ class PfPanelApp {
               <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" class="w-11 h-11 rounded-xl bg-zinc-900 border border-[var(--border-subtle)] flex-shrink-0" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'" />
               <div class="min-w-0">
                 <p class="text-sm font-semibold truncate">${user.displayName}</p>
-                <p class="text-[10px] text-[var(--text-muted)] truncate font-semibold uppercase">${user.isAdmin ? 'Administração LSPD' : 'Oficial LSPD'}</p>
+                <p class="text-[10px] text-[var(--text-muted)] truncate font-semibold uppercase">${user.isAdmin ? 'Administração SSP' : 'Oficial SSP'}</p>
               </div>
             </div>
             <div class="mt-3 flex items-center gap-2">
@@ -2143,8 +2143,8 @@ class PfPanelApp {
                 <i class="fas fa-shield-halved text-sm"></i>
               </div>
               <div>
-                <h1 class="text-base font-bold tracking-tight">LSPD</h1>
-                <p class="text-[8px] text-brand-500 font-bold tracking-wider uppercase">Los Santos Police Dept.</p>
+                <h1 class="text-base font-bold tracking-tight">SSP</h1>
+                <p class="text-[8px] text-brand-500 font-bold tracking-wider uppercase">Sec. Segurança Pública</p>
               </div>
             </div>
             <button id="mobile-sidebar-close" class="w-8 h-8 rounded-lg btn-soft flex items-center justify-center">
@@ -2166,8 +2166,8 @@ class PfPanelApp {
                 <i class="fas fa-shield-halved text-lg"></i>
               </div>
               <div>
-                <h1 class="text-lg font-bold tracking-tight">LSPD</h1>
-                <p class="text-[9px] text-brand-500 font-bold tracking-wider uppercase">Los Santos Police Department</p>
+                <h1 class="text-lg font-bold tracking-tight">SSP</h1>
+                <p class="text-[9px] text-brand-500 font-bold tracking-wider uppercase">Secretaria de Segurança Pública</p>
               </div>
             </div>
             <div class="p-5 flex-1 overflow-y-auto no-scrollbar">
@@ -2646,9 +2646,9 @@ class PfPanelApp {
                       <span class="px-2 py-0.5 text-xs font-bold uppercase rounded border ${statusBadges[sol.status]}">${sol.status}</span>
                     </div>
                     ${sol.status === 'aprovado' ? `
-                      <p class="text-xs text-[var(--text-muted)]">Aprovado por: <strong>${sol.aprovadoPor || 'Oficial LSPD'}</strong></p>
+                      <p class="text-xs text-[var(--text-muted)]">Aprovado por: <strong>${sol.aprovadoPor || 'Oficial SSP'}</strong></p>
                     ` : `
-                      <p class="text-xs text-[var(--text-muted)]">Reprovado por: <strong>${sol.reprovadoPor || 'Oficial LSPD'}</strong></p>
+                      <p class="text-xs text-[var(--text-muted)]">Reprovado por: <strong>${sol.reprovadoPor || 'Oficial SSP'}</strong></p>
                       <div class="p-2 rounded-lg border border-rose-500/10 bg-rose-500/5 text-rose-500 text-xs mt-1">
                         <strong>Motivo informado:</strong> ${sol.motivoReprovacao || 'Nenhum motivo informado.'}
                       </div>
@@ -3237,7 +3237,7 @@ class PfPanelApp {
                       <span class="font-bold">Status:</span>
                       <span class="px-2 py-0.5 text-xs font-bold uppercase rounded border ${statusBadges[caso.status]}">${caso.status}</span>
                     </div>
-                    <p class="text-xs text-[var(--text-muted)]">Encerrado por: <strong>${caso.fechadoPor || 'Corregedor LSPD'}</strong></p>
+                    <p class="text-xs text-[var(--text-muted)]">Encerrado por: <strong>${caso.fechadoPor || 'Corregedor SSP'}</strong></p>
                     <div class="p-3 rounded-lg border border-emerald-500/10 bg-emerald-500/5 text-emerald-400 text-xs mt-1 leading-relaxed">
                       <strong>Motivo de Encerramento:</strong> ${caso.motivoFechamento || 'Nenhum informado.'}
                     </div>
@@ -3540,7 +3540,7 @@ class PfPanelApp {
             <div class="p-6 border-b border-[var(--border-subtle)] bg-[var(--card-bg-soft)]/70 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
               <div>
                 <h3 class="text-xl font-bold tracking-tight">Registro de Auditoria</h3>
-                <p class="text-sm text-[var(--text-muted)] mt-1">Linha do tempo consolidada e auditável de ações da LSPD.</p>
+                <p class="text-sm text-[var(--text-muted)] mt-1">Linha do tempo consolidada e auditável de ações da SSP.</p>
               </div>
 
               <div class="flex flex-wrap items-center gap-2 w-full xl:w-auto p-2 bg-[var(--card-bg)] rounded-2xl border border-[var(--border-subtle)]">
@@ -3625,7 +3625,7 @@ class PfPanelApp {
         <div class="card-premium rounded-2xl p-6 max-w-3xl mx-auto mt-6">
           <div class="border-b border-[var(--border-subtle)] pb-4 mb-6">
             <h3 class="text-xl font-bold tracking-tight">Central de Exportação de Dados</h3>
-            <p class="text-sm text-[var(--text-muted)] mt-1">Gere relatórios customizados para fins de auditoria interna da LSPD.</p>
+            <p class="text-sm text-[var(--text-muted)] mt-1">Gere relatórios customizados para fins de auditoria interna da SSP.</p>
           </div>
 
           <div class="space-y-6">
@@ -3936,7 +3936,7 @@ class PfPanelApp {
                 </h3>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label class="block text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Cargo LSPD Geral</label>
+                    <label class="block text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">Cargo SSP Geral</label>
                     <input type="text" id="rl-lspdGeral" value="${rl.lspdGeral || ''}" placeholder="ID do cargo" class="discord-role-input w-full px-3 py-2 bg-zinc-950/40 rounded-xl text-xs border border-[var(--border-subtle)] focus:border-brand-500 text-zinc-100" />
                     <div id="name-rl-lspdGeral" class="mt-1.5 min-h-[15px]"></div>
                   </div>
@@ -4017,7 +4017,7 @@ class PfPanelApp {
           <div class="p-6 border-b border-[var(--border-subtle)] bg-[var(--card-bg-soft)]/70 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
             <div>
               <h3 class="text-xl font-bold tracking-tight">Gerenciamento de Ausências</h3>
-              <p class="text-sm text-[var(--text-muted)] mt-1">Monitore e analise os pedidos de licença e afastamento dos oficiais da LSPD.</p>
+              <p class="text-sm text-[var(--text-muted)] mt-1">Monitore e analise os pedidos de licença e afastamento dos oficiais da SSP.</p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2 w-full xl:w-auto p-2 bg-[var(--card-bg)] rounded-2xl border border-[var(--border-subtle)]">
@@ -4320,7 +4320,7 @@ class PfPanelApp {
 
                     <!-- Ficha de Recrutamento -->
                     <div class="p-4 bg-zinc-950/20 border border-[var(--border-subtle)] rounded-xl text-left text-xs space-y-2">
-                      <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-bold border-b border-[var(--border-subtle)] pb-1 mb-1.5"><i class="fas fa-file-signature text-brand-400 mr-1.5"></i>Recrutamento LSPD</p>
+                      <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-bold border-b border-[var(--border-subtle)] pb-1 mb-1.5"><i class="fas fa-file-signature text-brand-400 mr-1.5"></i>Recrutamento SSP</p>
                       ${o.recruitment ? `
                         <div class="space-y-1">
                           <div class="flex justify-between"><span class="text-[var(--text-muted)] font-semibold">Submissão:</span> <span class="font-bold text-zinc-200">${formatDateTime(o.recruitment.createdAt)}</span></div>

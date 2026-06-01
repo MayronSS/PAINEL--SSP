@@ -205,7 +205,7 @@ async function buildPontoStatusPayloadForDiscord() {
             separatorComponent(),
             textComponent(body),
             separatorComponent(),
-            textComponent(`${PONTO_ICON.refresh} **Atualização automática do sistema de ponto LSPD**`)
+            textComponent(`${PONTO_ICON.refresh} **Atualização automática do sistema de ponto SSP**`)
         ])
     ]);
 }
@@ -229,7 +229,7 @@ function buildPontoLogPayloadForDiscord({ type, ponto, actorName = 'Painel Web',
             textComponent(title),
             separatorComponent(),
             textComponent([
-                `${PONTO_ICON.user} <@${ponto.userId}> - **${ponto.username || 'Oficial LSPD'}**`,
+                `${PONTO_ICON.user} <@${ponto.userId}> - **${ponto.username || 'Oficial SSP'}**`,
                 timeLine,
                 `Registro: \`${shortId(ponto._id)}\` - Origem: **${actorName}**`
             ].join('\n'))
@@ -515,7 +515,7 @@ function buildTicketDmCopyPayloadForDiscord({ channelName, userId, transcriptFil
             'Status: atendimento encerrado e transcript gerado.',
             `Ticket: ${ticketLabel}`,
             'Arquivo: cópia completa do processo em HTML Transcript anexada.',
-            'Mensagem: obrigado por cooperar com a LSPD.'
+            'Mensagem: obrigado por cooperar com a SSP.'
         ].join('\n'))
     ];
 

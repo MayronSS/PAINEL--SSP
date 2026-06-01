@@ -204,7 +204,7 @@ router.get('/ponto/export', async (req, res) => {
 
         if (format === 'xlsx') {
             const workbook = new ExcelJS.Workbook();
-            const worksheet = workbook.addWorksheet('Registros de Ponto LSPD');
+            const worksheet = workbook.addWorksheet('Registros de Ponto SSP');
             worksheet.columns = [
                 { header: 'Policial', key: 'username', width: 25 },
                 { header: 'Discord ID', key: 'userId', width: 25 },
@@ -228,16 +228,16 @@ router.get('/ponto/export', async (req, res) => {
             });
 
             res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            res.setHeader('Content-Disposition', 'attachment; filename="pontos-lspd.xlsx"');
+            res.setHeader('Content-Disposition', 'attachment; filename="pontos-ssp.xlsx"');
             await workbook.xlsx.write(res);
             return res.end();
         } else if (format === 'pdf') {
             const doc = new PDFDocument({ margin: 30, size: 'A4' });
             res.setHeader('Content-Type', 'application/pdf');
-            res.setHeader('Content-Disposition', 'attachment; filename="pontos-lspd.pdf"');
+            res.setHeader('Content-Disposition', 'attachment; filename="pontos-ssp.pdf"');
             doc.pipe(res);
 
-            doc.fontSize(18).text('LSPD - Relatório de Registros de Bate-Ponto', { align: 'center' });
+            doc.fontSize(18).text('SSP - Relatório de Registros de Bate-Ponto', { align: 'center' });
             doc.moveDown(2);
 
             pontos.forEach((p, index) => {

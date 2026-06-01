@@ -75,7 +75,7 @@ router.get('/warnings', async (req, res) => {
             return {
                 ...w,
                 reason: reason || 'Nenhum motivo registrado.',
-                officerName: officersMap[w.userId] || 'Oficial LSPD'
+                officerName: officersMap[w.userId] || 'Oficial SSP'
             };
         });
 
@@ -141,7 +141,7 @@ function buildDirectWarningDmPayload(data) {
                 components: [
                     {
                         type: 10, // TEXT_DISPLAY
-                        content: `🛑 **DEPARTAMENTO DE POLÍCIA DE LOS SANTOS • NOTIFICAÇÃO DISCIPLINAR**\n\nPrezado(a) <@${data.userId}>,\n\nInformamos que foi aplicada uma penalidade administrativa diretamente em sua ficha de serviço.`
+                        content: `🛑 **SECRETARIA DE SEGURANÇA PÚBLICA • NOTIFICAÇÃO DISCIPLINAR**\n\nPrezado(a) <@${data.userId}>,\n\nInformamos que foi aplicada uma penalidade administrativa diretamente em sua ficha de serviço.`
                     },
                     {
                         type: 14, // SEPARATOR

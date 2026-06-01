@@ -1,5 +1,5 @@
-// LSPD Panel — Service Worker (Offline Cache + PWA)
-const CACHE_NAME = 'lspd-panel-v3';
+// SSP Panel — Service Worker (Offline Cache + PWA)
+const CACHE_NAME = 'ssp-panel-v3';
 const STATIC_ASSETS = [
   '/',
   '/css/style.css',

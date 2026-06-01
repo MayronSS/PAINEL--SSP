@@ -1,5 +1,5 @@
 /**
- * LSPD Panel — Namespace & Core Utilities
+ * SSP Panel — Namespace & Core Utilities
  * All modules register under the global LSPD namespace.
  */
 window.LSPD = window.LSPD || {};
